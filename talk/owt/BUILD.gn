@@ -266,6 +266,13 @@ static_library("owt_sdk_base") {
     
   }
   if (is_linux) {
+    if (current_cpu == "x64") {
+      include_dirs += ["//build/linux/debian_sid_amd64-sysroot/usr/include"]
+    }
+    else {
+      include_dirs += ["//build/linux/debian_sid_i386-sysroot/usr/include"]
+    }
+
     if (owt_msdk_header_root != "") {
       include_dirs += [ owt_msdk_header_root ]
       defines += [ "OWT_USE_MSDK" ]
